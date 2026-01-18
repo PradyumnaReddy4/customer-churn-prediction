@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Customer Churn Prediction</h2>
+
+        <form method="POST">
+
+            <label>Tenure (months)</label>
+            <input name="tenure" required>
+
+            <label>Monthly Charges</label>
+            <input name="MonthlyCharges" required>
+
+            <label>Total Charges</label>
+            <input name="TotalCharges" required>
+
+            <label>Contract</label>
+            <select name="Contract">
+                <option>Month-to-month</option>
+                <option>One year</option>
+                <option>Two year</option>
+            </select>
+
+            <label>Payment Method</label>
+            <select name="PaymentMethod">
+                <option>Electronic check</option>
+                <option>Mailed check</option>
+                <option>Bank transfer (automatic)</option>
+                <option>Credit card (automatic)</option>
+            </select>
+
+            <label>Internet Service</label>
+            <select name="InternetService">
+                <option>DSL</option>
+                <option>Fiber optic</option>
+                <option>No</option>
+            </select>
+
+            <label>Online Security</label>
+            <select name="OnlineSecurity">
+                <option>Yes</option>
+                <option>No</option>
+                <option>No internet service</option>
+            </select>
+
+            <label>Tech Support</label>
+            <select name="TechSupport">
+                <option>Yes</option>
+                <option>No</option>
+                <option>No internet service</option>
+            </select>
+
+            <label>Senior Citizen</label>
+            <select name="SeniorCitizen">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Partner</label>
+            <select name="Partner">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Dependents</label>
+            <select name="Dependents">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Paperless Billing</label>
+            <select name="PaperlessBilling">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <button type="submit">Predict Churn</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result {{ 'churn-yes' if prediction == 'Yes' else 'churn-no' }}">
+                <h3>Churn: {{ prediction }}</h3>
+                <p>Risk Probability: {{ probability }}%</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
